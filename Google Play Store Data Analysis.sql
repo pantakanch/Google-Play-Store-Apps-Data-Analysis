@@ -1,4 +1,4 @@
--- 1. What is the average rating for all apps?
+-- 1. What is the average rating for all apps in Google Play Store?
 SELECT 
 	ROUND(AVG(Rating), 2) AS average_rating
 FROM googleplaystore;
@@ -6,56 +6,70 @@ FROM googleplaystore;
 -- 2. What is the distribution of app ratings?
 SELECT 
 	Rating, 
-	COUNT(*) AS count
+	COUNT(*) AS count_rating
 FROM googleplaystore
-GROUP BY Rating;
+GROUP BY Rating
+ORDER BY Rating;
 
--- 3. What is the relationship between app rating and number of reviews?
+-- 3.  What are the most popular app categories by number of installs?
 SELECT 
-	Rating, 
-	ROUND(AVG(Reviews), 2) AS average_reviews
-FROM googleplaystore
-GROUP BY Rating;
-
--- 4.  What are the most popular app categories by number of installs?
-SELECT 
-	Category, 
-	COUNT(Installs) AS total_installs
+	Category,
+	SUM(CAST(REPLACE(Installs, '+', '') * 1000 AS INTEGER)) AS total_installs
 FROM googleplaystore
 GROUP BY Category
 ORDER BY total_installs DESC;
 
--- 5. What are the most popular app categories by average rating?
+-- 4. What are the most popular genres by average rating?
 SELECT 
-	Category, 
+	Genres, 
 	ROUND(AVG(Rating), 2) AS average_rating
 FROM googleplaystore
-GROUP BY Category
+GROUP BY Genres
 ORDER BY average_rating DESC;
 
--- 6. What is the relationship between app category and app type (paid or free)?
+-- 5. How many free and paid apps in each category?
 SELECT 
 	Category, 
 	Type, 
-	COUNT(*) AS count
+	COUNT(*) AS count_type
 FROM googleplaystore
 GROUP BY Category, Type;
+
+-- 6. What is the overall sentiment distribution for user reviews across all apps?
+SELECT 
+	Sentiment, 
+	COUNT(*) AS sentiment_count
+FROM googleplaystore_user_reviews
+GROUP BY Sentiment
+ORDER BY Sentiment;
 
 -- 7. What is the distribution of sentiment for user reviews of each app?
 SELECT 
 	App, 
-	Sentiment, 
-	COUNT(*) AS count
+	Sentiment,
+	count(*) AS sentiment_count
 FROM googleplaystore_user_reviews
 GROUP BY App, Sentiment;
 
--- 8. What is the relationship between app rating and user sentiment?
+-- 8. Which app has the most positive sentiment?
 SELECT 
-	Rating, 
+	App, 
 	Sentiment,
-	count(*) AS total_sentiment
+	count(*) AS sentiment_count
 FROM googleplaystore_user_reviews
-JOIN googleplaystore 
-ON googleplaystore_user_reviews.App = googleplaystore.App
-GROUP BY Rating, Sentiment
-ORDER BY Rating, total_sentiment DESC;
+WHERE Sentiment = 'Positive'
+GROUP BY App
+ORDER BY sentiment_count DESC;
+
+-- 9. What are the top 10 most positively reviewed apps in the Game category?
+SELECT 
+	googleplaystore_user_reviews.App AS google_app,
+	AVG(Sentiment_Polarity) AS avg_sentiment
+FROM googleplaystore_user_reviews
+	JOIN googleplaystore 
+	ON googleplaystore_user_reviews.App = googleplaystore.App
+WHERE googleplaystore.Category = 'GAME'
+GROUP BY google_app
+ORDER BY avg_sentiment DESC
+LIMIT 10;
+
