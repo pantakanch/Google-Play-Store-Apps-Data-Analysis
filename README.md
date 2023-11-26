@@ -14,4 +14,4 @@ Key Questions:
 8. Which app has the most positive reviews?
 9. What are the top 10 positively reviewed in games category?
 
-Link of the original dataset on Kaggle: https://www.kaggle.com/datasets/lava18/google-play-store-apps
+Dataset on Kaggle: https://www.kaggle.com/datasets/lava18/google-play-store-apps
