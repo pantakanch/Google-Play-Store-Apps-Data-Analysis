@@ -1,7 +1,7 @@
 # Google-Play-Store-Apps-SQL-Data-Analysis
 
 Description:
-This project explores the Google Play Store app ecosystem using a Kaggle dataset. I'll analyze app ratings, categories, genres, user reviews, and sentiment to gain insights that can improve app development, performance, and monetization strategies.
+This project explores the Google Play Store app ecosystem using a Kaggle dataset. It will analyze app ratings, categories, genres, user reviews, and sentiment to gain insights
 
 Key Questions:
 1. What is the average app rating?
