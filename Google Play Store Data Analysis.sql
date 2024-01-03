@@ -5,11 +5,22 @@ FROM googleplaystore;
 
 -- 2. What is the distribution of app ratings?
 SELECT 
-	Rating, 
-	COUNT(*) AS count_rating
-FROM googleplaystore
-GROUP BY Rating
-ORDER BY Rating;
+    rating_range, 
+    COUNT(*) AS count_rating
+FROM (
+    SELECT
+        CASE
+            WHEN Rating BETWEEN 1 AND 1.9 THEN 1
+            WHEN Rating BETWEEN 2 AND 2.9 THEN 2
+            WHEN Rating BETWEEN 3 AND 3.9 THEN 3
+            WHEN Rating BETWEEN 4 AND 4.9 THEN 4
+            WHEN Rating = 5 THEN 5
+            ELSE "no_rating"
+        END AS rating_range
+    FROM googleplaystore
+)
+GROUP BY rating_range
+ORDER BY rating_range;
 
 -- 3.  What are the most popular app categories by number of installs?
 SELECT 
