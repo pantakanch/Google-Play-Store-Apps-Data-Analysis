@@ -6,19 +6,37 @@ The "Google Play Store Apps SQL Data Analysis" project dives into the vast ecosy
 Dataset on Kaggle: https://www.kaggle.com/datasets/lava18/google-play-store-apps
 
 ## Key Questions:
-1. What is the average app rating?
-2. How do app ratings distribute?
-3. Which app categories have the most installs?
-4. Which app genres have the highest average ratings?
-5. How many free and paid apps are there in each category?
-6. What is the overall sentiment of user reviews?
-7. How does sentiment vary for each app?
-8. Which app has the most positive reviews?
-9. What are the top 10 positively reviewed in games category?
+
+1. **Average App Rating:**
+   - What is the average app rating?
+
+2. **App Ratings Distribution:**
+   - How do app ratings distribute?
+
+3. **Category-wise Installs:**
+   - Which app categories have the most installs?
+
+4. **Highest Rated Genres:**
+   - Which app genres have the highest average ratings?
+
+5. **Free and Paid Apps Breakdown:**
+   - How many free and paid apps are there in each category?
+
+6. **User Reviews Sentiment Overview:**
+   - What is the overall sentiment of user reviews?
+
+7. **App-specific Sentiment Analysis:**
+   - How does sentiment vary for each app?
+
+8. **Most Positively Reviewed App:**
+   - Which app has the most positive reviews?
+
+9. **Top 10 Positively Reviewed Games:**
+   - What are the top 10 positively reviewed apps in the Games category?
 
 ## SQL Queries:
 
-1. What is the average app rating?
+- **Average App Rating:**
 ```
 SELECT 
 	ROUND(AVG(Rating), 2) AS average_rating
@@ -26,7 +44,7 @@ FROM googleplaystore;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/4394ccb1-f730-4693-a793-d20742d8b69f)
 
-2. How do app ratings distribute?
+- **App Ratings Distribution:**
 ```
 SELECT 
     rating_range, 
@@ -48,7 +66,7 @@ ORDER BY rating_range;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/df839512-45d2-4773-8b0d-f1167c121896)
 
-3. Which app categories have the most installs?
+- **Category-wise Installs:**
 ```
 SELECT 
 	Category,
@@ -59,7 +77,7 @@ ORDER BY total_installs DESC;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/ee4d1ed5-7855-45e9-a2bf-69f0725d7082)
 
-4. Which app genres have the highest average ratings?
+- **Highest Rated Genres:**
 ```
 SELECT 
 	Genres, 
@@ -70,7 +88,7 @@ ORDER BY average_rating DESC;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/54f1b7dd-5e80-428d-9b43-bebbb7b9733f)
 
-5. How many free and paid apps are there in each category?
+- **Free and Paid Apps Breakdown:**
 ```
 SELECT 
 	Category, 
@@ -81,7 +99,7 @@ GROUP BY Category, Type;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/ac412e41-5056-45ea-8ecb-ec762bd63380)
 
-6. What is the overall sentiment of user reviews?
+- **User Reviews Sentiment Overview:**
 ```
 SELECT 
 	Sentiment, 
@@ -92,7 +110,7 @@ ORDER BY Sentiment;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/33f33c98-a5b2-441d-8ab2-d403dbadae27)
 
-7. How does sentiment vary for each app?
+- **App-specific Sentiment Analysis:**
 ```
 SELECT 
 	App, 
@@ -103,7 +121,7 @@ GROUP BY App, Sentiment;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/669f002c-2055-42b7-bfe5-64a0eaa4eeb5)
 
-8. Which app has the most positive reviews?
+- **Most Positively Reviewed App:**
 ```
 SELECT 
 	App, 
@@ -116,7 +134,7 @@ ORDER BY sentiment_count DESC;
 ```
 ![image](https://github.com/pantakanch/Google-Play-Store-Apps-SQL-Data-Analysis/assets/113978334/65131565-0987-4c69-824b-3ca442cbff25)
 
-9. What are the top 10 positively reviewed in games category?
+- **Top 10 Positively Reviewed Games:**
 ```
 SELECT 
 	googleplaystore_user_reviews.App AS google_app,
