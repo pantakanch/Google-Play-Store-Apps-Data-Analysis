@@ -1,10 +1,11 @@
 # Google-Play-Store-Apps-SQL-Data-Analysis
 
-This project explores the Google Play Store app ecosystem using a Kaggle dataset. It will analyze app ratings, categories, genres, user reviews, and sentiment to gain insights.
+## Overview:
+The "Google Play Store Apps SQL Data Analysis" project dives into the vast ecosystem of the Google Play Store, leveraging a Kaggle dataset to glean insights into app ratings, categories, genres, user reviews, and sentiments.
 
 Dataset on Kaggle: https://www.kaggle.com/datasets/lava18/google-play-store-apps
 
-# Key Questions:
+## Key Questions:
 1. What is the average app rating?
 2. How do app ratings distribute?
 3. Which app categories have the most installs?
@@ -15,7 +16,7 @@ Dataset on Kaggle: https://www.kaggle.com/datasets/lava18/google-play-store-apps
 8. Which app has the most positive reviews?
 9. What are the top 10 positively reviewed in games category?
 
-# Query:
+## SQL Queries:
 
 1. What is the average app rating?
 ```
