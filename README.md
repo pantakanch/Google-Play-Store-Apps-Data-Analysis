@@ -1,4 +1,4 @@
-# Google-Play-Store-Apps-SQL-Data-Analysis
+# Google Play Store Apps Analysis
 
 ## Overview:
 The "Google Play Store Apps SQL Data Analysis" project dives into the vast ecosystem of the Google Play Store, leveraging a Kaggle dataset to glean insights into app ratings, categories, genres, user reviews, and sentiments.
